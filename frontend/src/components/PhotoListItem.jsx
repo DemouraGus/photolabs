@@ -4,11 +4,11 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 
-const PhotoListItem = ({ photo }) => {
+const PhotoListItem = ({ photo, isFavourite, toggleFavourite }) => {
 
   return (
     <article className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton isFavourite={isFavourite} toggleFavourite={() => toggleFavourite(photo)} />
       <img className="photo-list__image" src={photo.urls.full} alt="" />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.user.profile} alt="" />
