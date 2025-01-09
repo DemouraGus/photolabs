@@ -5,17 +5,21 @@ import '../styles/PhotoFavButton.scss';
 
 
 function PhotoFavButton() {
-  const [iconClass, setIconClass] = useState("photo-list__fav-icon")
+  const [favouritePhoto, setFavouritePhoto] = useState(false);
   
   const handleClick = () => {
-    setIconClass((iconClass) =>
-    iconClass === "photo-list__fav-icon" ? "photo-list__fav-icon-svg" : "photo-list__fav-icon");
+    setFavouritePhoto((prev) => !prev);
   };
-
+  
   return (
     <div>
-      <button className={iconClass} onClick={handleClick}>
-        <FavIcon />
+      <button
+        className={`photo-list__fav-icon ${
+          favouritePhoto ? "photo-list__fav-icon-active" : ""
+        }`}
+        onClick={handleClick}
+      >
+        <FavIcon selected={favouritePhoto} />
       </button>
     </div>
   );

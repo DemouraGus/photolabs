@@ -5,16 +5,15 @@ import PhotoFavButton from "./PhotoFavButton";
 
 
 const PhotoListItem = ({ photo }) => {
-  const photos = [];
 
   return (
     <article className="photo-list__item">
       <PhotoFavButton />
-      <img className="photo-list__image" src={photo.imageSource} alt="" />
+      <img className="photo-list__image" src={photo.urls.full} alt="" />
       <div className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={photo.profile} alt="" />
+        <img className="photo-list__user-profile" src={photo.user.profile} alt="" />
         <div>
-          <p className="photo-list__user-info">{photo.username}</p>
+          <p className="photo-list__user-info">{photo.user.name}</p>
           <p className="photo-list__user-info photo-list__user-location">{photo.location.city}, {photo.location.country}</p>
         </div>
       </div>
