@@ -4,6 +4,8 @@ import "../styles/PhotoListItem.scss";
 
 
 const PhotoListItem = ({ photo }) => {
+  const photos = [];
+
   return (
     <article className="photo-list__item">
       <img className="photo-list__image" src={photo.imageSource} alt="" />
