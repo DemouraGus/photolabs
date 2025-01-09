@@ -21,6 +21,10 @@ const App = () => {
     setSelectedPhoto(photo);
   }
 
+  const closePhotoModal = () => {
+    setSelectedPhoto(null);
+  };
+
   return (
     <div className="App">
       <HomeRoute
@@ -30,7 +34,7 @@ const App = () => {
         toggleFavourite={toggleFavourite}
         onPhotoClick={handlePhotoClick}
       />
-      {selectedPhoto && (<PhotoDetailsModal photo={selectedPhoto} />
+      {selectedPhoto && (<PhotoDetailsModal photo={selectedPhoto} onClose={closePhotoModal} />
     )}
     </div>
   );
