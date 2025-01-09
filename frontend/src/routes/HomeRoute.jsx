@@ -6,8 +6,8 @@ import PhotoList from "components/PhotoList";
 const HomeRoute = ({ photos, topics, favourites, toggleFavourite}) => {
   return (
     <div className="home-route">
-      <TopNavigation topics={topics}/>
-      <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite}/>
+      <TopNavigation topics={topics} favouriteCount={favourites.length} />
+      <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite} />
     </div>
   )
 }
