@@ -5,6 +5,10 @@ import '../styles/PhotoFavButton.scss';
 
 
 function PhotoFavButton({ isFavourite, toggleFavourite }) {
+  const handleClick = (event) => {
+    event.stopPropagation();
+    toggleFavourite();
+  }
   
   return (
     <div>
@@ -12,7 +16,7 @@ function PhotoFavButton({ isFavourite, toggleFavourite }) {
         className={`photo-list__fav-icon ${
           isFavourite ? "photo-list__fav-icon-active" : ""
         }`}
-        onClick={toggleFavourite}
+        onClick={handleClick}
       >
         <FavIcon selected={isFavourite} />
       </button>

@@ -2,28 +2,17 @@ import React, { useState } from 'react';
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
-import topics from 'mocks/topics';
-import photos from 'mocks/photos';
+import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
-  const [favourites, setFavourites] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const {
+    state,
+    toggleFavourite,
+    handlePhotoClick,
+    closePhotoModal,
+  } = useApplicationData();
 
-  const toggleFavourite = (photo) => {
-    setFavourites((prevFavourites) => 
-      prevFavourites.some((fav) => fav.id === photo.id)
-        ? prevFavourites.filter((fav) => fav.id !== photo.id)
-        : [...prevFavourites, photo]
-    );
-  };
-
-  const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo);
-  }
-
-  const closePhotoModal = () => {
-    setSelectedPhoto(null);
-  };
+  const { photos, topics, favourites, selectedPhoto } = state
 
   return (
     <div className="App">
@@ -41,7 +30,7 @@ const App = () => {
         isFavourite={favourites.some((fav) => fav.id === selectedPhoto.id)} 
         toggleFavourite={toggleFavourite}
         onPhotoClick={handlePhotoClick}
-        similarPhotos={Object.values(selectedPhoto.similar_photos)}
+        similarPhotos={selectedPhoto.similar_photos ? Object.values(selectedPhoto.similar_photos) : []}
         favourites ={favourites} />
     )}
     </div>
