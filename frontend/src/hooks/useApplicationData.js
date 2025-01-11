@@ -1,33 +1,52 @@
-import { useState } from "react";
+import { useReducer, useEffect } from "react";
 import topics from "mocks/topics";
 import photos from "mocks/photos";
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_FAVOURITES":
+      return { ...state, favourites: action.favourites };
+    case "SET_SELECTED_PHOTO":
+      return { ...state, selectedPhoto: action.photo };
+    case "CLOSE_PHOTO_MODAL":
+      return { ...state, selectedPhoto: null };
+    case "SET_APPLICATION_DATA":
+      return { ...state, photos: action.photos, topics: action.topics };
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+};
+
 const useApplicationData = () => {
-  const [favourites, setFavourites] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const initialState = {
+    photos: [],
+    topics: [],
+    favourites: [],
+    selectedPhoto: null,
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const toggleFavourite = (photo) => {
-    setFavourites((prevFavourites) => 
-      prevFavourites.some((fav) => fav.id === photo.id)
-        ? prevFavourites.filter((fav) => fav.id !== photo.id)
-        : [...prevFavourites, photo]
-    );
+    const isFavourite = state.favourites.some((fav) => fav.id === photo.id);
+    const updatedFavourites = isFavourite
+      ? state.favourites.filter((fav) => fav.id !== photo.id)
+      : [...state.favourites, photo];
+
+    dispatch({ type: "SET_FAVOURITES", favourites: updatedFavourites });
   };
 
   const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo);
+    dispatch({ type: "SET_SELECTED_PHOTO", photo });
   };
 
   const closePhotoModal = () => {
-    setSelectedPhoto(null);
+    dispatch({ type: "CLOSE_PHOTO_MODAL" });
   };
 
-  const state = {
-    photos,
-    topics,
-    favourites,
-    selectedPhoto,
-  };
+  useEffect(() => {
+    dispatch({ type: "SET_APPLICATION_DATA", photos, topics });
+  }, []);
 
   return {
     state,
