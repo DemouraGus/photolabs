@@ -40,6 +40,12 @@ const useApplicationData = () => {
     dispatch({ type: "SET_SELECTED_PHOTO", photo });
   };
 
+  const handleTopicClick = (topicId) => {
+    fetch(`/api/topics/photos/${topicId}`)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: "SET_PHOTO_DATA", payload: data}))
+  };
+
   const closePhotoModal = () => {
     dispatch({ type: "CLOSE_PHOTO_MODAL" });
   };
@@ -61,6 +67,7 @@ const useApplicationData = () => {
     toggleFavourite,
     handlePhotoClick,
     closePhotoModal,
+    handleTopicClick,
   };
 };
 

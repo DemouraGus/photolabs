@@ -10,6 +10,7 @@ const App = () => {
     toggleFavourite,
     handlePhotoClick,
     closePhotoModal,
+    handleTopicClick,
   } = useApplicationData();
 
   const { photoData, topicData, favourites, selectedPhoto } = state
@@ -22,6 +23,7 @@ const App = () => {
         favourites={favourites}
         toggleFavourite={toggleFavourite}
         onPhotoClick={handlePhotoClick}
+        onTopicClick={handleTopicClick}
       />
       {selectedPhoto && 
       (<PhotoDetailsModal 
