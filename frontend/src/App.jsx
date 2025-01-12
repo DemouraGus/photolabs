@@ -12,13 +12,13 @@ const App = () => {
     closePhotoModal,
   } = useApplicationData();
 
-  const { photos, topics, favourites, selectedPhoto } = state
+  const { photoData, topicData, favourites, selectedPhoto } = state
 
   return (
     <div className="App">
       <HomeRoute
-        photos={photos}
-        topics={topics}
+        photos={photoData}
+        topics={topicData}
         favourites={favourites}
         toggleFavourite={toggleFavourite}
         onPhotoClick={handlePhotoClick}
