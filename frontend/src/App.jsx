@@ -15,6 +15,8 @@ const App = () => {
 
   const { photoData, topicData, favourites, selectedPhoto } = state
 
+  console.log('Selected Photo:', selectedPhoto);
+
   return (
     <div className="App">
       <HomeRoute
@@ -33,7 +35,8 @@ const App = () => {
         toggleFavourite={toggleFavourite}
         onPhotoClick={handlePhotoClick}
         similarPhotos={selectedPhoto.similar_photos ? Object.values(selectedPhoto.similar_photos) : []}
-        favourites ={favourites} />
+        favourites ={favourites} 
+      />
     )}
     </div>
   );
