@@ -17,6 +17,7 @@ const reducer = (state, action) => {
   }
 };
 
+// Setting up the custom hook with the initial state
 const useApplicationData = () => {
   const initialState = {
     photoData: [],
@@ -27,6 +28,7 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // Function to toggle favourite photos
   const toggleFavourite = (photo) => {
     const isFavourite = state.favourites.some((fav) => fav.id === photo.id);
     const updatedFavourites = isFavourite
@@ -50,12 +52,14 @@ const useApplicationData = () => {
     dispatch({ type: "CLOSE_PHOTO_MODAL" });
   };
 
+  // Effect to select a photo to show on the modal
   useEffect(() => {
     fetch("/api/photos")
       .then((response) => response.json())
       .then((data) => dispatch({ type: "SET_PHOTO_DATA", payload: data }))
   }, []);
 
+  // Effect to select a topic on the main page
   useEffect(() => {
     fetch("/api/topics")
       .then((response) => response.json())

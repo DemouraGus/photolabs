@@ -9,9 +9,10 @@ const PhotoList = ({ photos, favourites, toggleFavourite, onPhotoClick }) => {
       {photos.map((photo) => (
         <li key={photo.id}>
           <PhotoListItem photo={photo} 
-          isFavourite={favourites.some((fav) => fav.id === photo.id)}
-          toggleFavourite={toggleFavourite}
-          onPhotoClick={onPhotoClick} />
+            isFavourite={favourites.some((fav) => fav.id === photo.id)}
+            toggleFavourite={toggleFavourite}
+            onPhotoClick={onPhotoClick} 
+          />
         </li>
       ))}
     </ul>

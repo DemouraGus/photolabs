@@ -13,12 +13,9 @@ function PhotoFavButton({ isFavourite, toggleFavourite }) {
   return (
     <div>
       <button
-        className={`photo-list__fav-icon ${
-          isFavourite ? "photo-list__fav-icon-active" : ""
-        }`}
+        className={`photo-list__fav-icon ${isFavourite ? "photo-list__fav-icon-active" : ""}`}
         onClick={handleClick}
-      >
-        <FavIcon selected={isFavourite} />
+      ><FavIcon selected={isFavourite} />
       </button>
     </div>
   );

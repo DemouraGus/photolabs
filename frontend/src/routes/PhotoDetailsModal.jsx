@@ -39,11 +39,12 @@ const PhotoDetailsModal = ({ photo, onClose, isFavourite, toggleFavourite, onPho
       </div>
       </div >
       <div className="photo-details-modal__header">
-      <PhotoList 
-        photos={similarPhotos} 
-        favourites={favourites} 
-        toggleFavourite={toggleFavourite} 
-        onPhotoClick={onPhotoClick} />
+        <p className="photo-details-modal__photographer-info" >Similar Photos</p>
+        <PhotoList 
+          photos={similarPhotos} 
+          favourites={favourites} 
+          toggleFavourite={toggleFavourite} 
+          onPhotoClick={onPhotoClick} />
       </div>
     </div>
   )

@@ -5,6 +5,8 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
+  
+  // Bringing in the initial state and logic from the custom hook
   const {
     state,
     toggleFavourite,
@@ -14,8 +16,6 @@ const App = () => {
   } = useApplicationData();
 
   const { photoData, topicData, favourites, selectedPhoto } = state
-
-  console.log('Selected Photo:', selectedPhoto);
 
   return (
     <div className="App">
@@ -34,7 +34,7 @@ const App = () => {
         isFavourite={favourites.some((fav) => fav.id === selectedPhoto.id)} 
         toggleFavourite={toggleFavourite}
         onPhotoClick={handlePhotoClick}
-        similarPhotos={selectedPhoto.similar_photos ? Object.values(selectedPhoto.similar_photos) : []}
+        similarPhotos={selectedPhoto.similar_photos ? Object.values(selectedPhoto.similar_photos) : []} 
         favourites ={favourites} 
       />
     )}
